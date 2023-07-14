@@ -16,11 +16,7 @@
         <ion-searchbar color="secondary" placeholder="Search flower here......"></ion-searchbar>
 
         <!-- List Item -->
-        <ion-list >
-          <ion-item v-for = "product in products">
-            <ion-label >{{product.id}} - {{product.title}}</ion-label>
-          </ion-item>
-        </ion-list>
+        <ProductsList />
 
         <!-- Card image -->
         <ion-card>
@@ -41,16 +37,17 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
 import * as IonicComponents from '@/ionic/ionic.components';
-import flower from '@/api/flower.js'
+import ProductsList from '@/components/ProductsList.vue';
 
 export default defineComponent ({
     name:  'Tab1Page',
     components: {
       ...IonicComponents, 
+      ProductsList
     },
     setup(){
       const card1 = reactive({
-        media: 'https://media.istockphoto.com/id/1199211598/photo/pink-fresh-tulips.jpg?s=612x612&w=0&k=20&c=ql2FsqL6Xx5HdW3BO1rcFy94aq_bwtBlSWfAoF8tUZQ=',
+        media: 'https://docs-demo.ionic.io/assets/madison.jpg',
         title: 'Tulip Flower',
         subtitle: 'Meaning of tulip flower',
         description: 'Tulip flower is represent for  perfect and deep love.As tulips are a classic flower that has been loved by many for centuries they have been attached with the meaning of love'
@@ -63,21 +60,9 @@ export default defineComponent ({
 
       return {
 
-        products:[]
-
-      }
+    }
 
     },
-
-    created() {
-      
-      flower.getProducts( (products: any) => {
-
-        this.products = products
-
-      })
-
-    }
 
 });
 </script>
